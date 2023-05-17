@@ -93,6 +93,7 @@ const select = {
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -162,30 +163,35 @@ const select = {
       let price = thisProduct.data.price;
 
       // for every category (param)...
-      for(let paramId in thisProduct.data.params) {
-
-        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+      for (let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
         console.log(paramId, param);
-
-        // for every option in this category
-        for(let optionId in param.options) {
-
-          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+      
+        for (let optionId in param.options) {
           const option = param.options[optionId];
           console.log(optionId, option);
-
-          if(formData[paramId] && formData[paramId].includes(optionId)) {
-
-            // check if the option is not default
-            if(option !== 'default') {
+      
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+          const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
+      
+          if (optionSelected) {
+            if (option !== 'default') {
               price += option.price;
             } else {
               price -= option.price;
             }
           }
+      
+          if (optionImage) {
+            if (optionSelected) {
+              optionImage.classList.add('active');
+            } else {
+              optionImage.classList.remove('active');
+            }
+          }
         }
       }
+      
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
