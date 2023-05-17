@@ -163,15 +163,27 @@ const select = {
 
       // for every category (param)...
       for(let paramId in thisProduct.data.params) {
+
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
         console.log(paramId, param);
 
         // for every option in this category
         for(let optionId in param.options) {
+
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);
+
+          if(formData[paramId] && formData[paramId].includes(optionId)) {
+
+            // check if the option is not default
+            if(option !== 'default') {
+              price += option.price;
+            } else {
+              price -= option.price;
+            }
+          }
         }
       }
 
