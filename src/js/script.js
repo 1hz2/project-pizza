@@ -277,6 +277,8 @@
       const thisProduct = this;
 
       app.cart.add(thisProduct.prepareCartProduct());
+      thisProduct.processOrder();
+      app.cart.update();
     }
   }
 
