@@ -30,8 +30,6 @@ class Cart {
     initActions() {
       const thisCart = this;
   
-      console.log('Init actions for CartProduct');
-  
       thisCart.dom.toggleTrigger.addEventListener('click', function (event) {
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
@@ -142,8 +140,6 @@ class Cart {
   
     remove(cartProduct) {
       const thisCart = this;
-  
-      console.log('Cart remove() called!');
   
       cartProduct.element.remove();
   
