@@ -1,6 +1,6 @@
-import * as dom from './utils/dom';
-import * as func from './utils/functions';
-import './range-slider.css';
+import * as dom from './utils/dom.js';
+import * as func from './utils/functions.js';
+import './range-slider.js';
 
 const newLineAndTabRegexp = new RegExp('/[\\n\\t]/', 'g');
 const MAX_SET_BY_DEFAULT = 100;
@@ -272,7 +272,7 @@ export default class RangeSlider {
     this.onSlideEventsCount = 0;
     this.needTriggerEvents = false;
     return this;
-  };
+  }
 
   destroy() {
     dom.removeAllListenersFromEl(this, this.options.root);
@@ -636,7 +636,7 @@ export default class RangeSlider {
   }
 }
 
-RangeSlider.version = VERSION;
+//RangeSlider.version = VERSION;
 RangeSlider.dom = dom;
 RangeSlider.functions = func;
 RangeSlider.instances = [];
