@@ -56,7 +56,7 @@ class Cart {
     sendOrder(){
       const thisCart = this;
 
-      const url = 'http://localhost:3131/orders';
+      const url = settings.db.url + '/' + settings.db.product;
 
       const payload = {
         address: thisCart.dom.address.value,

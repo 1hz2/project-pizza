@@ -1,4 +1,4 @@
-import {classNames, select} from './settings.js';
+import {settings, classNames, select} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -76,8 +76,8 @@ import Booking from './components/Booking.js';
 
     initData: function(){
       const thisApp = this;
-      const url = 'http://localhost:3131/products';
-      //const url = settings.db.url + '/' + settings.db.products; nie dziala
+      //const url = 'http://localhost:3131/products';
+      const url = settings.db.url + '/' + settings.db.product;
       thisApp.data = {};
       fetch(url)
         .then(function(rawResponse){
